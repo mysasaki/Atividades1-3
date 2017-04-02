@@ -12,68 +12,21 @@ public class Atividade3 {
     public static void run() throws IOException {
         String PATH = "C:\\Users\\Mylla\\Pictures";
         BufferedImage img = ImageIO.read(new File(PATH,"car.png"));
-        BufferedImage himg = histogram(img);
+        BufferedImage himg = equalize(img);
 
         BufferedImage img2 = ImageIO.read(new File(PATH,"crowd.png"));
-        BufferedImage himg2 = histogram(img2);
+        BufferedImage himg2 = equalize(img2);
 
         BufferedImage img3 = ImageIO.read(new File(PATH,"montanha.jpg"));
-        BufferedImage himg3 = histogram(img3);
+        BufferedImage himg3 = equalize(img3);
 
         BufferedImage img4 = ImageIO.read(new File(PATH,"university.png"));
-        BufferedImage himg4 = histogram(img4);
+        BufferedImage himg4 = equalize(img4);
 
         ImageIO.write(himg, "png", new File("histogramCar.png"));
         ImageIO.write(himg2, "png", new File("histogramCrowd.png"));
         ImageIO.write(himg3, "png", new File("histogramMountain.png"));
         ImageIO.write(himg4, "png", new File("histogramUniversity.png"));
-    }
-
-    public static BufferedImage equalize(BufferedImage img, int[] h) //h = histograma
-    {
-        BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
-
-        Color npixel;
-        int hmin = 0;
-        int hv = 0;
-
-
-        // Coleta numeros de tom e cor minima
-        for(int i = 0; i < 255; i++){
-            if(h[i] != 0)
-            {
-                hmin = h[i];
-                break;
-            }
-        }
-
-        for(int y = 0; y < img.getHeight(); y++)
-        {
-            for (int x = 0; x < img.getWidth(); x++)
-            {
-
-                int cor = img.getRGB(x,y);
-
-                Color pixel = new Color(cor);
-
-
-                hv = Math.round ((histogramAcumulado(pixel.getRed(), h) - hmin) /
-                        (histogramAcumulado(255, h) - hmin)) * (256 - 1);
-
-
-                if(hv > 255)
-                    hv = 255;
-
-                if (hv < 0)
-                    hv = 0;
-
-                npixel = new Color(hv,hv,hv);
-
-                out.setRGB(x,y,npixel.getRGB());
-            }
-        }
-
-        return out;
     }
 
     static int histogramAcumulado (int value, int[]v)
@@ -87,7 +40,7 @@ public class Atividade3 {
         return sum;
     }
 
-    public static BufferedImage histogram(BufferedImage img)
+    public static BufferedImage equalize(BufferedImage img)
     {
         int[] h = new int[256];
         BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
