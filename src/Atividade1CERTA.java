@@ -17,7 +17,7 @@ public class Atividade1CERTA {
                 0x555555, 0x5555FF, 0x55FF55, 0x55FFFF, 0xFF5555, 0xFF55FF, 0xFFFF55, 0xFFFFFF
         };
 
-        public static Color distance(Color cor1)
+        public static Color distancia(Color cor1)
         {
             double distancia = 0;
             double menor = 1000000000;
@@ -50,28 +50,13 @@ public class Atividade1CERTA {
                 for (int x = 0; x < img.getWidth(); x++)
                 {
                     Color cor = new Color(img.getRGB(x,y));
-                    Color egaColor = distance(cor);
-
-                /*int r = Convert(cor.getRed());
-                int g = Convert(cor.getGreen());
-                int b = Convert(cor.getBlue());
-                Color outColor = new Color(r,g,b);*/
+                    Color egaColor = distancia(cor);
                     out.setRGB(x,y,egaColor.getRGB());
                 }
             }
             return out;
         }
-        public static int Converter(int value)
-        {
-            if(value <= 64)
-                return 63;
-            else if(value > 63 && value <= 127)
-                return 127;
-            else if(value > 127 && value <= 191)
-                return 191;
 
-            return 255;
-        }
 
         public static void run() throws IOException {
             String PATH = "C:\\Users\\Mylla\\Pictures";
@@ -79,7 +64,7 @@ public class Atividade1CERTA {
             BufferedImage EGAimg = EGA(img);
 
             ImageIO.write(EGAimg,"png", new File("kittyEGAgood.png"));
-            System.out.println("Pronto!");
+            System.out.println("ok!");
         }
 
         public static void main(String[] args) throws IOException {
