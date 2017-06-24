@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Atividade1CERTA {
 
-          int[] pallete64 = {
+          static int[] pallete64 = {
                 0x000000, 0x00AA00, 0x0000AA, 0x00AAAA, 0xAA0000, 0xAA00AA, 0xAAAA00, 0xAAAAAA,
                 0x000055, 0x0000FF, 0x00AA55, 0x00AAFF, 0xAA0055, 0xAA00FF, 0xAAAA55, 0xAAAAFF,
                 0x005500, 0x0055AA, 0x00FF00, 0x00FFAA, 0xAA5500, 0xAA55AA, 0xAAFF00, 0xAAFFAA,
@@ -17,7 +17,7 @@ public class Atividade1CERTA {
                 0x555555, 0x5555FF, 0x55FF55, 0x55FFFF, 0xFF5555, 0xFF55FF, 0xFFFF55, 0xFFFFFF
         };
 
-        public Color distance(Color cor1)
+        public static Color distance(Color cor1)
         {
             double distancia = 0;
             double menor = 1000000000;
@@ -41,7 +41,7 @@ public class Atividade1CERTA {
         }
 
 
-        public BufferedImage EGA(BufferedImage img)
+        public static BufferedImage EGA(BufferedImage img)
         {
             BufferedImage out = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
 
@@ -61,7 +61,7 @@ public class Atividade1CERTA {
             }
             return out;
         }
-        public int Convert(int value)
+        public static int Converter(int value)
         {
             if(value <= 64)
                 return 63;
@@ -73,7 +73,7 @@ public class Atividade1CERTA {
             return 255;
         }
 
-        public void run() throws IOException {
+        public static void run() throws IOException {
             String PATH = "C:\\Users\\Mylla\\Pictures";
             BufferedImage img = ImageIO.read(new File(PATH,"kitty.jpg"));
             BufferedImage EGAimg = EGA(img);
@@ -82,7 +82,7 @@ public class Atividade1CERTA {
             System.out.println("Pronto!");
         }
 
-        public void main(String[] args) throws IOException {
+        public static void main(String[] args) throws IOException {
             new Atividade1CERTA().run();
         }
     }
